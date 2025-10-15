@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <div class="container">
         <header>
             <h1>🔍 ROR ID Extractor & Bulk Retrieval</h1>
-            <p>Extract and retrieve Research Organization Registry (ROR) data</p>
+            <p>Extract and retrieve Research Organisation Registry (ROR) data</p>
         </header>
 
         <div class="content">
@@ -25,12 +25,16 @@
                         <li>Mixed text: <span class="code-inline">Harvard (https://ror.org/03vek6s52) and MIT (042nb2s44)</span></li>
                         <li>Any combination of the above!</li>
                     </ul>
+                    <div style="margin-top: 15px; padding: 10px; background-color: #e8f4fd; border-left: 4px solid #2196F3; border-radius: 4px;">
+                        <strong>ℹ️ Rate Limits:</strong> The ROR API allows 2000 requests per 5 minutes. 
+                        For large batches, the tool will automatically wait and retry if rate limits are exceeded.
+                    </div>
                 </div>
             </div>
 
             <!-- Input Section -->
             <div class="section">
-                <div class="section-title">📝 Step 1: Paste Your Text</div>
+                <div class="section-title">📝 Paste Your Text & Get Organisation Details</div>
                 <textarea id="inputText" placeholder="Paste any text containing ROR links or IDs here...
 
 Examples:
@@ -45,8 +49,8 @@ Or just paste a list of IDs:
 00f54p054"></textarea>
 
                 <div class="button-group">
-                    <button class="btn-primary" onclick="extractIds()">
-                        <span>🔍</span> Extract ROR IDs
+                    <button class="btn-primary" onclick="extractAndFetch()">
+                        <span>🔍</span> Extract & Fetch Organisation Details
                     </button>
                     <button class="btn-secondary" onclick="clearInput()">
                         <span>🗑️</span> Clear
@@ -75,9 +79,6 @@ Or just paste a list of IDs:
                 <div id="idList" class="id-list"></div>
 
                 <div class="button-group">
-                    <button class="btn-success" onclick="fetchOrganizations()">
-                        <span>📥</span> Fetch Organization Details
-                    </button>
                     <button class="btn-secondary" onclick="downloadIds()">
                         <span>💾</span> Download IDs (TXT)
                     </button>
@@ -90,13 +91,13 @@ Or just paste a list of IDs:
             <!-- Loading Section -->
             <div id="loading" class="loading">
                 <div class="spinner"></div>
-                <p>Fetching organization data from ROR API...</p>
+                <p>Fetching organisation data from ROR API...</p>
                 <p id="loadingProgress"></p>
             </div>
 
             <!-- Organization Results Section -->
             <div id="orgResults" class="results">
-                <div class="section-title">🏛️ Organization Details</div>
+                <div class="section-title">🏛️ Organisation Details</div>
                 
                 <div id="orgTable"></div>
 
@@ -122,8 +123,8 @@ Or just paste a list of IDs:
                 <a href="https://github.com" target="_blank">View on GitHub</a>
             </p>
             <p style="margin-top: 10px; font-size: 0.9em;">
-                Research Organization Registry (ROR) is a community-led registry of open, 
-                sustainable, usable, and unique identifiers for research organizations.
+                Research Organisation Registry (ROR) is a community-led registry of open, 
+                sustainable, usable, and unique identifiers for research organisations.
             </p>
         </footer>
     </div>
