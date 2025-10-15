@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROR ID Extractor & Bulk Retrieval Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 ROR ID Extractor & Bulk Retrieval</h1>
+            <p>Extract and retrieve Research Organization Registry (ROR) data</p>
+        </header>
+
+        <div class="content">
+            <!-- Instructions Section -->
+            <div class="section">
+                <div class="section-title">📖 How to Use</div>
+                <div class="info-box">
+                    <h3>Supported Input Formats:</h3>
+                    <ul>
+                        <li>Full URLs: <span class="code-inline">https://ror.org/03vek6s52</span></li>
+                        <li>Just IDs: <span class="code-inline">03vek6s52</span></li>
+                        <li>Mixed text: <span class="code-inline">Harvard (https://ror.org/03vek6s52) and MIT (042nb2s44)</span></li>
+                        <li>Any combination of the above!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="section">
+                <div class="section-title">📝 Step 1: Paste Your Text</div>
+                <textarea id="inputText" placeholder="Paste any text containing ROR links or IDs here...
+
+Examples:
+https://ror.org/03vek6s52 - Harvard University
+MIT: https://ror.org/042nb2s44
+Stanford University (00f54p054)
+https://ror.org/03v76x132
+
+Or just paste a list of IDs:
+03vek6s52
+042nb2s44
+00f54p054"></textarea>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="extractIds()">
+                        <span>🔍</span> Extract ROR IDs
+                    </button>
+                    <button class="btn-secondary" onclick="clearInput()">
+                        <span>🗑️</span> Clear
+                    </button>
+                    <button class="btn-secondary" onclick="loadSample()">
+                        <span>📋</span> Load Sample Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="extractResults" class="results">
+                <div class="section-title">✅ Extracted ROR IDs</div>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalFound">0</div>
+                        <div class="stat-label">Total Found</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="uniqueCount">0</div>
+                        <div class="stat-label">Unique IDs</div>
+                    </div>
+                </div>
+
+                <div id="idList" class="id-list"></div>
+
+                <div class="button-group">
+                    <button class="btn-success" onclick="fetchOrganizations()">
+                        <span>📥</span> Fetch Organization Details
+                    </button>
+                    <button class="btn-secondary" onclick="downloadIds()">
+                        <span>💾</span> Download IDs (TXT)
+                    </button>
+                    <button class="btn-secondary" onclick="copyIds()">
+                        <span>📋</span> Copy IDs to Clipboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Section -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Fetching organization data from ROR API...</p>
+                <p id="loadingProgress"></p>
+            </div>
+
+            <!-- Organization Results Section -->
+            <div id="orgResults" class="results">
+                <div class="section-title">🏛️ Organization Details</div>
+                
+                <div id="orgTable"></div>
+
+                <div class="button-group">
+                    <button class="btn-success" onclick="downloadCSV()">
+                        <span>💾</span> Download as CSV
+                    </button>
+                    <button class="btn-success" onclick="downloadJSON()">
+                        <span>💾</span> Download as JSON
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div id="errorMsg" class="error"></div>
+            <div id="successMsg" class="success"></div>
+        </div>
+
+        <footer>
+            <p>
+                Powered by <a href="https://ror.org" target="_blank">ROR API</a> | 
+                <a href="https://ror.readme.io/docs/rest-api" target="_blank">API Documentation</a> | 
+                <a href="https://github.com" target="_blank">View on GitHub</a>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                Research Organization Registry (ROR) is a community-led registry of open, 
+                sustainable, usable, and unique identifiers for research organizations.
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
